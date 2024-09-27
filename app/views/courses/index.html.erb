@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Welcome to Tomcheable</h1>
+  <h3>Latest Courses</h3>
+  <div class="row">
+    <% @courses.first(3).each do |course| %> <!-- Iteramos sobre los cursos obtenidos -->
+      <div class="col-md-4">
+        <div class="card mb-4"> <!-- Usamos una tarjeta de Bootstrap para cada curso -->
+          <div class="card-body">
+            <h5 class="card-title"><%= course.title %></h5> <!-- Título del curso -->
+            <p class="card-text"><%= course.description %></p> <!-- Descripción del curso -->
+            <a href="#" class="btn btn-primary">View Course</a> <!-- Botón de "Ver curso" -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
