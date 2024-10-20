@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="my-4">Create New Course</h1>
+  <%= form_with model: @course, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+      <%= form.error :title, class: 'text-danger' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, class: 'form-label' %>
+      <%= form.text_area :description, class: 'form-control' %>
+      <%= form.error :description, class: 'text-danger' %>
+    </div>
+
+    <%= form.submit 'Create Course', class: 'btn btn-primary' %>
+  <% end %>
+</div>

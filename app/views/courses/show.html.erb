@@ -1,0 +1,6 @@
+<div class="container">
+  <h1 class="mt-5"><%= @course.title %></h1> 
+  <p class="mt-3"><%= @course.description %></p> 
+  <a href="<%= edit_course_path(@course) %>" class="btn btn-warning">Edit Course</a> 
+  <%= link_to 'Back to Courses', courses_path, class: 'btn btn-secondary' %>
+</div>

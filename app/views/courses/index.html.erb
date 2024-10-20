@@ -1,17 +1,36 @@
 <div class="container">
-  <h1>Welcome to Tomcheable</h1>
-  <h3>Latest Courses</h3>
+  <h1 class="mt-5 text-center">Welcome to Tomcheable</h1> <!-- Título principal con margen superior -->
+
+  <!-- Mensajes de feedback para el usuario -->
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <h3 class="my-4">Latest Courses</h3>
   <div class="row">
-    <% @courses.first(3).each do |course| %> <!-- Iteramos sobre los cursos obtenidos -->
-      <div class="col-md-4">
-        <div class="card mb-4"> <!-- Usamos una tarjeta de Bootstrap para cada curso -->
+    <% @courses.first(3).each do |course| %>
+      <div class="col-md-4 d-flex align-items-stretch"> <!-- Aseguramos que las tarjetas se alineen bien -->
+        <div class="card mb-4 w-100">
           <div class="card-body">
             <h5 class="card-title"><%= course.title %></h5> <!-- Título del curso -->
-            <p class="card-text"><%= course.description %></p> <!-- Descripción del curso -->
-            <a href="#" class="btn btn-primary">View Course</a> <!-- Botón de "Ver curso" -->
+            <p class="card-text"><%= course.description.truncate(100) %></p> <!-- Descripción del curso truncada -->
+            <a href="<%= course_path(course) %>" class="btn btn-primary">View Course</a> <!-- Enlace funcional al curso -->
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container text-center">
+    <span class="text-muted">© 2024 Tomcheable. All rights reserved.</span>
+  </div>
+</footer>
