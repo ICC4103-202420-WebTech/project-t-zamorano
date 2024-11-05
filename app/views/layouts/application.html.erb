@@ -5,9 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
-
   </head>
 
   <body>
@@ -25,6 +24,22 @@
             <li class="nav-item">
               <a class="nav-link" href="/courses">All Courses</a>
             </li>
+
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= edit_user_registration_path %>">Edit Profile</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_session_path %>">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -37,6 +52,5 @@
         <span class="text-muted">© 2024 Tomcheable. All rights reserved.</span>
       </div>
     </footer>
-
   </body>
 </html>

@@ -13,6 +13,14 @@
   <% end %>
 
   <h3 class="my-4">Latest Courses</h3>
+  
+  <!-- Enlace para crear un nuevo curso solo si el usuario está autenticado -->
+  <% if user_signed_in? %>
+    <div class="mb-3">
+      <%= link_to 'Create New Course', new_course_path, class: 'btn btn-success' %>
+    </div>
+  <% end %>
+
   <div class="row">
     <% @courses.first(3).each do |course| %>
       <div class="col-md-4 d-flex align-items-stretch"> <!-- Aseguramos que las tarjetas se alineen bien -->
@@ -21,6 +29,12 @@
             <h5 class="card-title"><%= course.title %></h5> <!-- Título del curso -->
             <p class="card-text"><%= course.description.truncate(100) %></p> <!-- Descripción del curso truncada -->
             <a href="<%= course_path(course) %>" class="btn btn-primary">View Course</a> <!-- Enlace funcional al curso -->
+            <% if user_signed_in? && course.creator == current_user %>
+              <div class="mt-2">
+                <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-warning' %>
+                <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
